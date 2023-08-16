@@ -7,17 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <div class="bg-lime- p-6 rounded-lg shadow-md w-96">
-    
-    <body class="min-h-screen flex items-center justify-center">
-        <input type="number" id="number1" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200">
-        <input type="number" id="number2" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200">
-        <p id="result" class="p-2 mb-2 w-full text-red-800 text-xl"></p>
-        <button onclick="myfunction()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Tıkla</button>
+    <div class="mb-24">
+        <body class="min-h-screen flex items-center justify-center">
+            <label for="options" class="flex items-center justify-center font-bold">Seçiniz</label>
+            <select name="options" id="options" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200">
+                <option value="value1">Sayı Algoritması</option>
+                <option value="value2">Harf Algoritması</option>
+            </select>
 
-</div>
+            <div id="numberAlgorithm" class="mb-4">
+                <input type="number" id="number1" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200" placeholder="Sayı 1">
+                <input type="number" id="number2" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200" placeholder="Sayı 2">
+                <p id="result" class="p-2 mb-2 w-full text-red-800 text-xl"></p>
+                <button onclick="myfunction()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Sayı Algoritması</button>
+            </div>
+    
+            <div id="letterAlgorithm" style="display: none;">
+                <input type="text" id="data1" class="rounded-lg p-2 mb-2 w-full border-4 border-red-200" placeholder="Metin">
+                <p id="dataresult" class="p-2 mb-2 w-full text-red-800 text-xl"></p>
+                <button onclick="myfunction2()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">Harf Algoritması</button>
+            </div>
 
     <script>
-        
+
+
+
         function myfunction() {
 
            var number1 = parseInt(document.getElementById("number1").value);
@@ -67,9 +81,38 @@
             console.log(finalresult);
         }
         
-        minmaxfunction(number1, number2);           
+        minmaxfunction(number1, number2);
+                
 
     }
+    
+        function myfunction2() {
+
+            var data1 = document.getElementById("data1").value;
+            var resultElement = document.getElementById("dataresult");
+
+            var upperText = data1.charAt(0).toUpperCase() + data1.slice(1).toLowerCase();
+            resultElement.textContent = upperText;
+            console.log(upperText);
+
+
+        }
+        
+    
+        document.getElementById("options").addEventListener("change", function() {
+            var selectedOption = this.value;
+            var numberAlgorithm = document.getElementById("numberAlgorithm");
+            var letterAlgorithm = document.getElementById("letterAlgorithm");
+
+            if (selectedOption === "value1") {
+                numberAlgorithm.style.display = "block";
+                letterAlgorithm.style.display = "none";
+            } else if (selectedOption === "value2") {
+                numberAlgorithm.style.display = "none";
+                letterAlgorithm.style.display = "block";
+            }
+        });
+
     </script>
 </body>
 </html>
